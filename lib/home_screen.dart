@@ -57,7 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: ListTile(
                   leading: character.image.isNotEmpty
-                      ? Image.network(character.image, width: 50, height: 50, fit: BoxFit.cover)
+                      ? Image.network(
+                    character.image,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.person, size: 50);
+                    },
+                  )
                       : const Icon(Icons.person, size: 50),
                   title: Text(character.name, style: const TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: Text('Dom: ${character.house}'),

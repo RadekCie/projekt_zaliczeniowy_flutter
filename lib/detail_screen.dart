@@ -42,7 +42,14 @@ class DetailScreen extends StatelessWidget {
                   character.image.isNotEmpty
                       ? ClipRRect(
                     borderRadius: BorderRadius.circular(15),
-                    child: Image.network(character.image, height: 300, fit: BoxFit.cover),
+                    child: Image.network(
+                      character.image,
+                      height: 300,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.person, size: 150);
+                      },
+                    ),
                   )
                       : const Icon(Icons.person, size: 150),
                   const SizedBox(height: 20),
